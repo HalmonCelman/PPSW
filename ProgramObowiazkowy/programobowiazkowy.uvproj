@@ -402,6 +402,36 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>lancuchy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lancuchy.c</FilePath>
+            </File>
+            <File>
+              <FileName>konwersje.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\konwersje.h</FilePath>
+            </File>
+            <File>
+              <FileName>lancuchy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lancuchy.h</FilePath>
+            </File>
+            <File>
+              <FileName>konwersje.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\konwersje.c</FilePath>
+            </File>
+            <File>
+              <FileName>dekodowanie.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dekodowanie.c</FilePath>
+            </File>
+            <File>
+              <FileName>dekodowanie.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\dekodowanie.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
