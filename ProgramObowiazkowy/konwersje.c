@@ -18,11 +18,11 @@ Result eHexStringToUInt(char pcStr[],unsigned int *puiValue){
 	}
 	*(puiValue)=0;
 	char cCharacterValue;
-	for(unsigned char ucCharacterCounter=0;pcStr[ucCharacterCounter]!=NULL;ucCharacterCounter++){
-		if(4==ucCharacterCounter){
+	for(unsigned char ucCharacterCounter=2;pcStr[ucCharacterCounter]!=NULL;ucCharacterCounter++){
+		if(6 == ucCharacterCounter){
 			return ERROR;
 		}
-		cCharacterValue=pcStr[ucCharacterCounter+2];
+		cCharacterValue=pcStr[ucCharacterCounter];
 		*(puiValue)=(*(puiValue)<<4)+cCharacterValue-((cCharacterValue>='A')?('A'-10):('0'));
 	}
 	return OK;

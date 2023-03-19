@@ -6,9 +6,15 @@
 int main(){
 
 	char cStr1[254];
-	CopyString("costam\0",cStr1);
-
-	AppendUIntToString(0xFAB4,cStr1);
+	CopyString("  test1 0x0021 reset",cStr1);
+	unsigned int uicos;
 	
+	
+	DecodeMsg(&cStr1[0]);
+	
+	
+	char * tmp=asToken[0].uValue.pcString;
+	//tmp=1[asToken];
+	//tmp=2[asToken];
 	return 0;
 }
