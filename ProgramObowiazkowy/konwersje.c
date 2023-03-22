@@ -5,11 +5,11 @@ void UIntToHex(unsigned int uiValue, char pcStr[]){
 	pcStr[0]='0';
 	pcStr[1]='x';
 	unsigned char ucNibbleValue;
-	for(unsigned char ucNibbleCounter=0;ucNibbleCounter<8;ucNibbleCounter++){
+	for(unsigned char ucNibbleCounter=0;ucNibbleCounter<4;ucNibbleCounter++){
 		ucNibbleValue=((uiValue>>(ucNibbleCounter*4)) & 0xF);
-		pcStr[9-ucNibbleCounter]=((char)(ucNibbleValue+((ucNibbleValue>9)?('A'-10):('0'))));
+		pcStr[5-ucNibbleCounter]=((char)(ucNibbleValue+((ucNibbleValue>9)?('A'-10):('0'))));
 	}
-	pcStr[10]=NULL;
+	pcStr[6]=NULL;
 }
 
 Result eHexStringToUInt(char pcStr[],unsigned int *puiValue){
@@ -29,10 +29,9 @@ Result eHexStringToUInt(char pcStr[],unsigned int *puiValue){
 }
 
 void AppendUIntToString (unsigned int uiValue, char pcDestinationStr[]){
-	unsigned char ucNullPosition;
-	for(ucNullPosition=0;pcDestinationStr[ucNullPosition]!=NULL;ucNullPosition++);
-	UIntToHex(uiValue,&pcDestinationStr[ucNullPosition]);
+	unsigned char ucCharacterCounter;
+	for(ucCharacterCounter=0;pcDestinationStr[ucCharacterCounter]!=NULL;ucCharacterCounter++);
+	UIntToHex(uiValue,&pcDestinationStr[ucCharacterCounter]);
 }
-
 
 //****************************************************************

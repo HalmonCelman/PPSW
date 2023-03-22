@@ -21,9 +21,9 @@ CompResult eCompareString(char pcStr1[], char pcStr2[]){
 }
 
 void AppendString (char pcSourceStr[],char pcDestinationStr[]){
-  unsigned char ucNullPosition;
-  for(ucNullPosition=0; pcDestinationStr[ucNullPosition]!=NULL; ucNullPosition++ ){}
-  CopyString(pcSourceStr,&pcDestinationStr[ucNullPosition]);
+  unsigned char ucCharacterCounter;
+  for(ucCharacterCounter=0; pcDestinationStr[ucCharacterCounter]!=NULL; ucCharacterCounter++ ){}
+  CopyString(pcSourceStr,&pcDestinationStr[ucCharacterCounter]);
 }
 
 void ReplaceCharactersInString(char pcString[],char cOldChar,char cNewChar){

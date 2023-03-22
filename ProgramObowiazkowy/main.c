@@ -10,11 +10,15 @@ int main(){
 	unsigned int uicos;
 	
 	
-	DecodeMsg(&cStr1[0]);
+	//DecodeMsg(cStr1);
 	
 	
-	char * tmp=asToken[0].uValue.pcString;
+	//char * tmp=asToken[0].uValue.pcString;
 	//tmp=1[asToken];
 	//tmp=2[asToken];
+	
+	UIntToHex(0xFBC2,cStr1);
+	eHexStringToUInt(cStr1,&uicos);
+	
 	return 0;
 }
