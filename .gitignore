@@ -50,7 +50,7 @@ Makefile
 
 # Build files
 # define exception below if needed
-*.bat
+#*.bat
 *._ia
 *.__i
 *._ii
@@ -92,4 +92,4 @@ Makefile
 # To explicitly override the above, define any exceptions here; e.g.:
 # !my_customized_scatter_file.sct
 
-ProgramObowiazkowy/CMakeCache.txt
+ProgramObowiazkowy/build/
