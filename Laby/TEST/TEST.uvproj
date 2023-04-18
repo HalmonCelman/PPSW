@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>programobowiazkowy</OutputName>
+          <OutputName>TEST</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -348,7 +348,7 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <VariousControls>
-              <MiscControls>--C99</MiscControls>
+              <MiscControls>--c99</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
@@ -401,46 +401,6 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>lancuchy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lancuchy.c</FilePath>
-            </File>
-            <File>
-              <FileName>konwersje.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\konwersje.h</FilePath>
-            </File>
-            <File>
-              <FileName>lancuchy.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lancuchy.h</FilePath>
-            </File>
-            <File>
-              <FileName>konwersje.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\konwersje.c</FilePath>
-            </File>
-            <File>
-              <FileName>dekodowanie.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dekodowanie.c</FilePath>
-            </File>
-            <File>
-              <FileName>dekodowanie.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\dekodowanie.h</FilePath>
-            </File>
-            <File>
-              <FileName>testy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\testy.c</FilePath>
-            </File>
-            <File>
-              <FileName>testy.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\testy.h</FilePath>
             </File>
           </Files>
         </Group>
