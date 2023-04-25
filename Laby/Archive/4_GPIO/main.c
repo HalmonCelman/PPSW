@@ -67,7 +67,7 @@ KeyboardState eKeyboardRead(void){
 }
 
 void KeyboardInit(void){
-	IO0DIR &=~ (LED0_bm | LED1_bm | LED2_bm | LED3_bm);
+	IO0DIR &=~ (KEY0_bm | KEY1_bm | KEY2_bm | KEY3_bm);
 }
 
 void LedStep(StepSide eStepSide){
@@ -104,7 +104,7 @@ int main(void){
 	KeyboardInit();
 	
 	while(1){
-		switch(eKeyboardRead()){
+		switch((int)eKeyboardRead()){
 			case BUTTON_1:
 				LedStepRight();
 				break;
