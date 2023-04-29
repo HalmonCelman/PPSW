@@ -19,27 +19,23 @@ int main(void){
 
 	unsigned char ucMoveCounter=0;
 	
-	typedef enum {MOVE_LEFT, MOVE_RIGHT} LedState;
-  LedState eLedState = MOVE_LEFT;
+	typedef enum {MOVE, STAY} LedState;
+  LedState eLedState = STAY;
   while(1){
     switch(eLedState){
-      case MOVE_LEFT:
-        LedStepLeft();
+      case MOVE:
+        LedStepRight();
 				if(2==ucMoveCounter){
-          eLedState = MOVE_RIGHT;
+          eLedState = STAY;
 					ucMoveCounter=0;
 				}else{
 					ucMoveCounter++;
 				}
         break;
-      case MOVE_RIGHT:
-        LedStepRight();
-				if(2==ucMoveCounter){
-          eLedState = MOVE_LEFT;
-					ucMoveCounter=0;
-				}else{
-					ucMoveCounter++;
-				}
+      case STAY:
+        if(BUTTON_0 == eKeyboardRead()){
+				  eLedState=MOVE;
+        }
         break;
     }
   }
