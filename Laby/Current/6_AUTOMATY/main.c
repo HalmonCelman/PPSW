@@ -16,34 +16,30 @@ void Delay(unsigned int uiDelayTime){
 int main(void){
 	LedInit();
 	KeyboardInit();
+
+	unsigned char ucMoveCounter=0;
 	
-	typedef enum {L0,L1,L2,R0,R1,R2} LedState;
-  LedState eLedState = L0;
+	typedef enum {MOVE_LEFT, MOVE_RIGHT} LedState;
+  LedState eLedState = MOVE_LEFT;
   while(1){
     switch(eLedState){
-      case L0:
+      case MOVE_LEFT:
         LedStepLeft();
-        eLedState = L1;
+				if(2==ucMoveCounter){
+          eLedState = MOVE_RIGHT;
+					ucMoveCounter=0;
+				}else{
+					ucMoveCounter++;
+				}
         break;
-			case L1:
-        LedStepLeft();
-        eLedState = L2;
-        break;
-			case L2:
-        LedStepLeft();
-        eLedState = R0;
-        break;
-			 case R0:
+      case MOVE_RIGHT:
         LedStepRight();
-        eLedState = R1;
-        break;
-			case R1:
-        LedStepRight();
-        eLedState = R2;
-        break;
-			case R2:
-        LedStepRight();
-        eLedState = L0;
+				if(2==ucMoveCounter){
+          eLedState = MOVE_LEFT;
+					ucMoveCounter=0;
+				}else{
+					ucMoveCounter++;
+				}
         break;
     }
   }
