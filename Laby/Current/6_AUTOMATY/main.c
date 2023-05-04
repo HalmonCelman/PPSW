@@ -21,6 +21,7 @@ int main(void){
 	
 	typedef enum {MOVE, STAY} LedState;
   LedState eLedState = STAY;
+
   while(1){
     switch(eLedState){
       case MOVE:
@@ -29,13 +30,16 @@ int main(void){
           eLedState = STAY;
 					ucMoveCounter=0;
 				}else{
+					eLedState=MOVE;
 					ucMoveCounter++;
 				}
         break;
       case STAY:
         if(BUTTON_0 == eKeyboardRead()){
 				  eLedState=MOVE;
-        }
+        }else{
+					eLedState=STAY;
+				}
         break;
     }
   }
