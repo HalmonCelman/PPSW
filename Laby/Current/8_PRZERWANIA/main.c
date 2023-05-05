@@ -16,17 +16,22 @@
 // VICVectCntlx Vector Control Registers
 #define mIRQ_SLOT_ENABLE 0x00000020
 
+
+void (*ptrTimer0InterruptFunction)(void);
+
+
 /**********************************************/
 //(Interrupt Service Routine) of Timer 0 interrupt
 __irq void Timer0IRQHandler(){
 
 	T0IR=mMR0_INTERRUPT; 	// skasowanie flagi przerwania 
-	LedStepRight();		// cos do roboty
+	ptrTimer0InterruptFunction();		// cos do roboty
 	VICVectAddr=0x00; 	// potwierdzenie wykonania procedury obslugi przerwania
 }
 /**********************************************/
-void Timer0Interrupts_Init(unsigned int uiPeriod){ // microseconds
-
+void Timer0Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)(void) ){ // microseconds
+	
+	ptrTimer0InterruptFunction = ptrInterruptFunction;
         // interrupts
 
 	VICIntEnable |= (0x1 << VIC_TIMER0_CHANNEL_NR);            // Enable Timer 0 interrupt channel 
@@ -48,7 +53,7 @@ int main (){
 	LedInit();
 	
 	unsigned int iMainLoopCtr;
-	Timer0Interrupts_Init(250000);
+	Timer0Interrupts_Init(250000,&LedStepLeft);
 
 	while(1){
 	 	iMainLoopCtr++;
