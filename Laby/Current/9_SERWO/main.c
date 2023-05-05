@@ -23,7 +23,19 @@ void Automat(void);
 void DetectorInit(void);
 DetectorState eReadDetector(void);
 
+void ServoCallib(void){
+  sServo.eState=CALLIB;
+}
 
+void ServoInit(unsigned int uiServoFrequency){
+	ServoCallib();
+	LedInit();
+	Timer0Interrupts_Init(1000000/uiServoFrequency,&Automat);
+}
+
+void ServoGoTo(unsigned int uiPosition){
+	sServo.uiDesiredPosition=uiPosition;
+}
 
 void Automat(void){
 		
@@ -71,27 +83,27 @@ DetectorState eReadDetector(void){
 
 /**********************************************/
 int main (){
-	LedInit();
+	
 	KeyboardInit();
 	DetectorInit();
 	
-	sServo.eState=CALLIB;
+	ServoInit(50);
 	
-	Timer0Interrupts_Init(20000,&Automat);
+	
 
   while(1){
 		switch(eKeyboardRead()){
 			case BUTTON_0:
-				sServo.eState=CALLIB;
+				ServoCallib();
 			  break;
 			case BUTTON_1:
-				sServo.uiDesiredPosition=12;
+				ServoGoTo(12);
 			  break;
 			case BUTTON_2:
-				sServo.uiDesiredPosition=24;
+				ServoGoTo(24);
 			  break;
 			case BUTTON_3:
-				sServo.uiDesiredPosition=36;
+				ServoGoTo(36);
 			  break;
 		}
   }
