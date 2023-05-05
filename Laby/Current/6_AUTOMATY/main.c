@@ -26,20 +26,18 @@ int main(void){
     switch(eLedState){
       case MOVE:
         LedStepRight();
+				Delay(200);
 				if(2==ucMoveCounter){
           eLedState = STAY;
 					ucMoveCounter=0;
 				}else{
-					eLedState=MOVE;
 					ucMoveCounter++;
 				}
         break;
       case STAY:
         if(BUTTON_0 == eKeyboardRead()){
 				  eLedState=MOVE;
-        }else{
-					eLedState=STAY;
-				}
+        }
         break;
     }
   }
