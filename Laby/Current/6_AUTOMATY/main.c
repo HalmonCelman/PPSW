@@ -17,25 +17,20 @@ int main(void){
 	LedInit();
 	KeyboardInit();
 
-	unsigned char ucMoveCounter=0;
-	
 	typedef enum {MOVE, STAY} LedState;
-  LedState eLedState = STAY;
+  LedState eLedState = MOVE;
 
   while(1){
     switch(eLedState){
       case MOVE:
         LedStepRight();
 				Delay(200);
-				if(2==ucMoveCounter){
+				if(BUTTON_0 == eKeyboardRead()){
           eLedState = STAY;
-					ucMoveCounter=0;
-				}else{
-					ucMoveCounter++;
 				}
         break;
       case STAY:
-        if(BUTTON_0 == eKeyboardRead()){
+        if(BUTTON_1 == eKeyboardRead()){
 				  eLedState=MOVE;
         }
         break;
