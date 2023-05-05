@@ -7,9 +7,16 @@
 
 #define DETECTOR_bm (1<<10)
 
-typedef enum {MOVE_LEFT, MOVE_RIGHT, STAY, CALLIB} LedState;
-
 typedef enum {ACTIVE, INACTIVE} DetectorState;
+
+enum ServoState {CALLIB, IDLE, IN_PROGRESS};
+
+struct Servo
+{
+enum ServoState eState; unsigned int
+uiCurrentPosition; unsigned int
+uiDesiredPosition;
+}; struct Servo sServo;
 
 
 void Automat(void);
@@ -19,37 +26,33 @@ DetectorState eReadDetector(void);
 
 
 void Automat(void){
-	static LedState eLedState = CALLIB;
-	
-	switch(eLedState){
+		
+	switch(sServo.eState){
 		  case CALLIB:
 			  if(ACTIVE == eReadDetector()){
-				  eLedState = STAY;
+				  sServo.eState = IDLE;
+					sServo.uiCurrentPosition=0;
+					sServo.uiDesiredPosition=0;
         }else{
 					LedStepLeft();
 				}
 			  break;
-      case MOVE_LEFT:
-        LedStepLeft();
-				if(BUTTON_1 == eKeyboardRead()){
-          eLedState = STAY;
+      case IDLE:
+				if(sServo.uiCurrentPosition != sServo.uiDesiredPosition){
+          sServo.eState = IN_PROGRESS;
 				}
         break;
-      case STAY:
-        if(BUTTON_2 == eKeyboardRead()){
-				  eLedState=MOVE_RIGHT;
-        }
-				else if(BUTTON_0 == eKeyboardRead()){
-          eLedState = MOVE_LEFT;
-				}
-        break;
-			case MOVE_RIGHT:
-        LedStepRight();
-				if(BUTTON_1 == eKeyboardRead()){
-          eLedState = STAY;
+      case IN_PROGRESS:
+        if(sServo.uiCurrentPosition < sServo.uiDesiredPosition){
+          LedStepRight();
+					sServo.uiCurrentPosition++;
+				} else if(sServo.uiCurrentPosition > sServo.uiDesiredPosition){
+          LedStepLeft();
+					sServo.uiCurrentPosition--;
+				} else{
+          sServo.eState = IDLE;
 				}
         break;	
-			
     }
 }
 
@@ -71,9 +74,26 @@ int main (){
 	LedInit();
 	KeyboardInit();
 	DetectorInit();
+	
+	sServo.eState=CALLIB;
+	
 	Timer0Interrupts_Init(20000,&Automat);
 
   while(1){
+		switch(eKeyboardRead()){
+			case BUTTON_0:
+				sServo.eState=CALLIB;
+			  break;
+			case BUTTON_1:
+				sServo.uiDesiredPosition=12;
+			  break;
+			case BUTTON_2:
+				sServo.uiDesiredPosition=24;
+			  break;
+			case BUTTON_3:
+				sServo.uiDesiredPosition=36;
+			  break;
+		}
   }
 	
 	return 0;
