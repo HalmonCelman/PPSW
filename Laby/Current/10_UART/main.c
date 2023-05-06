@@ -10,31 +10,33 @@
 
 /**********************************************/
 int main (){
-	
+	LedInit();
 	KeyboardInit();
 	DetectorInit();
 	
 	UART_InitWithInt(9600);
 	
-	//ServoInit(50);
 	
 	
 
   while(1){
-		/*switch(eKeyboardRead()){
-			case BUTTON_0:
-				ServoCallib();
+		switch(cOdebranyZnak){
+			case '1':
+				LedOn(0);
 			  break;
-			case BUTTON_1:
-				ServoGoTo(12);
+			case '2':
+				LedOn(1);
 			  break;
-			case BUTTON_2:
-				ServoGoTo(24);
+			case '3':
+				LedOn(2);
 			  break;
-			case BUTTON_3:
-				ServoGoTo(36);
+			case '4':
+				LedOn(3);
 			  break;
-		}*/
+			case 'c':
+				LedOn(4);
+			  break;
+		}
   }
 	
 	return 0;
