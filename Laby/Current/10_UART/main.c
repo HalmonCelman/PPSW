@@ -27,13 +27,7 @@ int main (){
 				ServoCallib();
 				break;
 			case '1':
-				ServoGoTo(50);
-				break;
-			case '2':
-				ServoGoTo(100);
-				break;
-			case '3':
-				ServoGoTo(150);
+				ServoGoTo(sServo.uiCurrentPosition+12);
 				break;			
 			
 		}
