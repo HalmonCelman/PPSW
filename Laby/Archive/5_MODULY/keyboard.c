@@ -1,6 +1,11 @@
 #include <LPC21xx.H>
-#include "led.h"
 #include "keyboard.h"
+
+#define KEY0_bm (1<<4)
+#define KEY1_bm (1<<6)
+#define KEY2_bm (1<<5)
+#define KEY3_bm (1<<7)
+
 
 KeyboardState eKeyboardRead(void){
 	if (0 == (IO0PIN & KEY0_bm)){
