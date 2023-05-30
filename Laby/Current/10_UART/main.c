@@ -28,11 +28,10 @@ int main (){
 				break;
 			case '1':
 				ServoGoTo(sServo.uiCurrentPosition+12);
+			  cOdebranyZnak=' ';
 				break;			
 			
 		}
-		
-		cOdebranyZnak=' ';
 		
 		switch(eKeyboardRead()){
 			case BUTTON_0:
@@ -47,6 +46,8 @@ int main (){
 			case BUTTON_3:
 				ServoGoTo(36);
 			  break;
+			default:
+				break;
 		}
   }
 	

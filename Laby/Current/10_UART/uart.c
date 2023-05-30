@@ -22,6 +22,7 @@
 // VICVectCntlx Vector Control Registers
 #define mIRQ_SLOT_ENABLE                           0x00000020
 
+#define mUART0_RxD (1<<2)
 ////////////// Zmienne globalne ////////////
 char cOdebranyZnak;
 
@@ -49,15 +50,14 @@ __irq void UART0_Interrupt (void) {
 void UART_InitWithInt(unsigned int uiBaudRate){
 
    // UART0
-   PINSEL0 = PINSEL0 | (1<<2);                                     // ustawic pina na odbiornik uart0
+   PINSEL0 = PINSEL0 | mUART0_RxD;                                     // ustawic pina na odbiornik uart0
    U0LCR  |= m8BIT_UART_WORD_LENGTH | mDIVISOR_LATCH_ACCES_BIT; // dlugosc slowa, DLAB = 1
    U0DLL   = ((15000000)/16)/uiBaudRate;                      // predkosc transmisji
    U0LCR  &= (~mDIVISOR_LATCH_ACCES_BIT);                       // DLAB = 0
-   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE;               // RDA interrupt enable
+   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE;               // przerwanie kiedy gotowy odbior
 
    // INT
    VICVectAddr0  = (unsigned long) UART0_Interrupt;             // set interrupt service routine address
    VICVectCntl0  = mIRQ_SLOT_ENABLE | VIC_UART0_CHANNEL_NR;     // use it for UART 0 Interrupt
    VICIntEnable |= (0x1 << VIC_UART0_CHANNEL_NR);               // Enable UART 0 Interrupt Channel
 }
-
