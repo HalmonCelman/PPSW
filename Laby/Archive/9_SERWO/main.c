@@ -1,6 +1,3 @@
-#include <LPC21xx.H>
-
-
 #include "led.h"
 #include "keyboard.h"
 #include "timer_interrupts.h"
@@ -32,6 +29,8 @@ int main (){
 			case BUTTON_3:
 				ServoGoTo(36);
 			  break;
+			default:
+				break;
 		}
   }
 	
