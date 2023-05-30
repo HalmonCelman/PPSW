@@ -4,9 +4,6 @@
 
 typedef enum {MOVE_LEFT, MOVE_RIGHT, STAY} LedState;
 
-
-void Automat(void);
-
 void Automat(void){
 	static LedState eLedState = STAY;
 	
@@ -38,7 +35,7 @@ void Automat(void){
 int main (){
 	LedInit();
 	KeyboardInit();
-	Timer0Interrupts_Init(20000,&Automat);
+	Timer0Interrupts_Init(100000,&Automat);
 
   while(1){
   }
