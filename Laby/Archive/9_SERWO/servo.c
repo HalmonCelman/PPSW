@@ -6,7 +6,7 @@
 
 #define DETECTOR_bm (1<<10)
 
-enum ServoState {CALLIB, IDLE, IN_PROGRESS};
+enum ServoState {CALLIB, IDLE, IN_PROGRESS, OFFSET};
 
 
 struct Servo
@@ -19,17 +19,23 @@ unsigned int uiDesiredPosition;
 struct Servo sServo;
 
 void Automat(void){
-		
 	switch(sServo.eState){
 		  case CALLIB:
 			  if(ACTIVE == eReadDetector()){
-				  sServo.eState = IDLE;
+				  sServo.eState = OFFSET;
 					sServo.uiCurrentPosition=0;
 					sServo.uiDesiredPosition=0;
         }else{
 					LedStepLeft();
 				}
 			  break;
+			case OFFSET:
+				if(sServo.uiCurrentPosition!=12){
+					LedStepLeft();
+				}else{
+					sServo.eState = IDLE;
+				}
+				break;
       case IDLE:
 				if(sServo.uiCurrentPosition != sServo.uiDesiredPosition){
           sServo.eState = IN_PROGRESS;
