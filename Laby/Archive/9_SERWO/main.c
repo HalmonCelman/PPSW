@@ -1,20 +1,12 @@
-#include "led.h"
 #include "keyboard.h"
-#include "timer_interrupts.h"
 #include "servo.h"
-
-
 
 /**********************************************/
 int main (){
 	
 	KeyboardInit();
-	DetectorInit();
-	
 	ServoInit(50);
 	
-	
-
   while(1){
 		switch(eKeyboardRead()){
 			case BUTTON_0:

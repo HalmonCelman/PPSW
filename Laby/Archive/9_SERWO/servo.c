@@ -6,22 +6,17 @@
 
 #define DETECTOR_bm (1<<10)
 
-
-
-
 enum ServoState {CALLIB, IDLE, IN_PROGRESS};
+
 
 struct Servo
 {
-enum ServoState eState; unsigned int
-uiCurrentPosition; unsigned int
-uiDesiredPosition;
+enum ServoState eState;
+unsigned int uiCurrentPosition;
+unsigned int uiDesiredPosition;
 }; 
 
-
 struct Servo sServo;
-
-
 
 void Automat(void){
 		
@@ -54,27 +49,23 @@ void Automat(void){
     }
 }
 
+void DetectorInit(void){
+	IO0DIR &=~ DETECTOR_bm;
+}
 
-
-
-
+void ServoInit(unsigned int uiServoFrequency){
+	LedInit();
+	DetectorInit();
+	ServoCallib();
+	Timer0Interrupts_Init(1000000/uiServoFrequency,&Automat);
+}
 
 void ServoCallib(void){
   sServo.eState=CALLIB;
 }
 
-void ServoInit(unsigned int uiServoFrequency){
-	ServoCallib();
-	LedInit();
-	Timer0Interrupts_Init(1000000/uiServoFrequency,&Automat);
-}
-
 void ServoGoTo(unsigned int uiPosition){
 	sServo.uiDesiredPosition=uiPosition;
-}
-
-void DetectorInit(void){
-	IO0DIR &=~ DETECTOR_bm;
 }
 
 DetectorState eReadDetector(void){
