@@ -25,12 +25,14 @@ int main (){
 		switch(cOdebranyZnak){
 			case 'c':
 				ServoCallib();
+			  cOdebranyZnak=' ';
 				break;
 			case '1':
-				ServoGoTo(sServo.uiCurrentPosition+12);
+				ServoShift(12);
 			  cOdebranyZnak=' ';
 				break;			
-			
+			default:
+				break;
 		}
 		
 		switch(eKeyboardRead()){

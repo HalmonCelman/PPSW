@@ -452,16 +452,6 @@
               <FileType>5</FileType>
               <FilePath>.\uart.h</FilePath>
             </File>
-            <File>
-              <FileName>reciever.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\reciever.c</FilePath>
-            </File>
-            <File>
-              <FileName>reciever.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\reciever.h</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
