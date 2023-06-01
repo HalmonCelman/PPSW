@@ -22,7 +22,7 @@ void Automat(void){
 	switch(sServo.eState){
 		  case CALLIB:
 			  if(ACTIVE == eReadDetector()){
-				  sServo.eState = OFFSET;
+				  sServo.eState = IDLE;
 					sServo.uiCurrentPosition=0;
 					sServo.uiDesiredPosition=0;
         }else{
@@ -30,12 +30,12 @@ void Automat(void){
 				}
 			  break;
 			case OFFSET:
-				if(sServo.uiCurrentPosition!=12){
-					LedStepRight();
-					sServo.uiCurrentPosition++;
-				}else{
+				if(sServo.uiCurrentPosition==12){
 					sServo.uiCurrentPosition = 0;
 					sServo.eState = IDLE;
+				}else{
+					LedStepRight();
+					sServo.uiCurrentPosition++;
 				}
 				break;
       case IDLE:
@@ -64,16 +64,19 @@ void DetectorInit(void){
 void ServoInit(unsigned int uiServoFrequency){
 	LedInit();
 	DetectorInit();
-	ServoCallib();
 	Timer0Interrupts_Init(1000000/uiServoFrequency,&Automat);
+	ServoCallib();
 }
 
 void ServoCallib(void){
   sServo.eState=CALLIB;
+	while(sServo.eState == CALLIB);
 }
 
 void ServoGoTo(unsigned int uiPosition){
+	while(sServo.eState == IN_PROGRESS);
 	sServo.uiDesiredPosition=uiPosition;
+	sServo.eState = IN_PROGRESS;
 }
 
 DetectorState eReadDetector(void){
