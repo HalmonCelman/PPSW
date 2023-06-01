@@ -1,6 +1,6 @@
 #include <LPC210X.H>
 #include "uart.h"
-#include "lancuchy.h"
+#include "string.h"
 /************ UART ************/
 // U0LCR Line Control Register
 #define mDIVISOR_LATCH_ACCES_BIT                   0x00000080
@@ -66,7 +66,7 @@ void UART_InitWithInt(unsigned int uiBaudRate){
 
 
 void Reciever_PutCharacterToBuffer(char cCharacter){
-	if(sRxBuffer.ucCharCtr>=RECIEVER_SIZE){
+	if(sRxBuffer.ucCharCtr == RECIEVER_SIZE){
 		sRxBuffer.eStatus = OVERFLOW;
 	}else if(TERMINATOR == cCharacter){
 		sRxBuffer.cData[sRxBuffer.ucCharCtr] = NULL;

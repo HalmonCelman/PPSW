@@ -1,16 +1,23 @@
-#define TERMINATOR 		';'
-#define RECIEVER_SIZE 30
+#pragma once
 
-enum eRecieverStatus {EMPTY, READY, OVERFLOW};
+#undef NULL
+#define NULL (0)
 
-struct RecieverBuffer{
-char cData[RECIEVER_SIZE];
-unsigned char ucCharCtr;
-enum eRecieverStatus eStatus;
-};
+typedef enum{
+DIFFRENT,
+EQUAL
+} CompResult;
 
-extern struct RecieverBuffer sRxBuffer;
+typedef enum{
+OK,
+ERROR
+} Result;
 
-void Reciever_PutCharacterToBuffer(char cCharacter);
-enum eRecieverStatus eReciever_GetStatus(void);
-void Reciever_GetStringCopy(char * ucDestination);
+void CopyString(char pcSource[], char pcDestination[]);
+CompResult eCompareString(char pcStr1[], char pcStr2[]);
+void AppendString (char pcSourceStr[],char pcDestinationStr[]);
+void ReplaceCharactersInString(char pcString[],char cOldChar,char cNewChar);
+
+void UIntToHex(unsigned int, char*);
+Result eHexStringToUInt(char*,unsigned int*);
+void AppendUIntToString (unsigned int, char*);

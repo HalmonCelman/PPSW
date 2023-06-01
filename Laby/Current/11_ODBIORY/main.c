@@ -3,7 +3,8 @@
 #include "timer_interrupts.h"
 #include "servo.h"
 #include "uart.h"
-#include "lancuchy.h"
+#include "string.h"
+#include "command_decoder.h"
 
 /**********************************************/
 int main (){
@@ -18,19 +19,19 @@ int main (){
 	char cKomunikat[RECIEVER_SIZE]="";
 
 	while(1){
-		switch(eReciever_GetStatus()){
-			case READY:
+		if(eReciever_GetStatus() == READY){
 				Reciever_GetStringCopy(cKomunikat);
-				if(EQUAL == eCompareString(cKomunikat,"callib")){
-					ServoCallib();
-				}else if(EQUAL == eCompareString(cKomunikat,"left")){
-					ServoGoTo(50);
-				}else if(EQUAL == eCompareString(cKomunikat,"right")){
-					ServoGoTo(150);
+				DecodeMsg(cKomunikat);
+				if((ucTokenNr != 0) && (asToken[0].eType == KEYWORD)){
+					switch(asToken[0].uValue.eKeyword){
+					case CAL:
+						ServoCallib();
+						break;
+					case GO:
+						sServo.uiDesiredPosition = asToken[1].uValue.uiNumber;
+						break;
+					}
 				}
-				break;
-			default:
-				break;
 		}	
 }
 	

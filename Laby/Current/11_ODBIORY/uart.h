@@ -4,7 +4,7 @@ void UART_InitWithInt(unsigned int uiBaudRate);
 extern char cOdebranyZnak;
 
 
-#define TERMINATOR 		';'
+#define TERMINATOR 		'\r'
 #define RECIEVER_SIZE 30
 
 enum eRecieverStatus {EMPTY, READY, OVERFLOW};

@@ -1,7 +1,4 @@
-#pragma once
-
-#include "lancuchy.h"
-#include "konwersje.h"
+#include "string.h"
 
 #undef NULL
 #define NULL (0)
