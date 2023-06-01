@@ -31,8 +31,10 @@ void Automat(void){
 			  break;
 			case OFFSET:
 				if(sServo.uiCurrentPosition!=12){
-					LedStepLeft();
+					LedStepRight();
+					sServo.uiCurrentPosition++;
 				}else{
+					sServo.uiCurrentPosition = 0;
 					sServo.eState = IDLE;
 				}
 				break;
