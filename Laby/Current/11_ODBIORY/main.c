@@ -3,8 +3,6 @@
 #include "timer_interrupts.h"
 #include "servo.h"
 #include "uart.h"
-#include "reciever.h"
-
 #include "lancuchy.h"
 
 /**********************************************/

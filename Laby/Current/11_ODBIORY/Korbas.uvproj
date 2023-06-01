@@ -453,14 +453,34 @@
               <FilePath>.\uart.h</FilePath>
             </File>
             <File>
-              <FileName>reciever.c</FileName>
+              <FileName>lancuchy.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\reciever.c</FilePath>
+              <FilePath>.\lancuchy.c</FilePath>
             </File>
             <File>
-              <FileName>reciever.h</FileName>
+              <FileName>lancuchy.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\reciever.h</FilePath>
+              <FilePath>.\lancuchy.h</FilePath>
+            </File>
+            <File>
+              <FileName>konwersje.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\konwersje.c</FilePath>
+            </File>
+            <File>
+              <FileName>konwersje.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\konwersje.h</FilePath>
+            </File>
+            <File>
+              <FileName>command_decoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\command_decoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>command_decoder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\command_decoder.h</FilePath>
             </File>
           </Files>
         </Group>

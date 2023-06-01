@@ -1,12 +1,11 @@
-#include "dekodowanie.h"
+#include "command_decoder.h"
 
 
 Token asToken[MAX_TOKEN_NR];
 
 Keyword asKeywordList[MAX_KEYWORD_NR]={
-{RST,"reset"},
-{LD, "load" },
-{ST, "store"}
+{CAL,"callib"},
+{GO, "goto" },
 };
 
 unsigned char ucTokenNr;

@@ -1,5 +1,6 @@
 #include <LPC210X.H>
-#include "reciever.h"
+#include "uart.h"
+#include "lancuchy.h"
 /************ UART ************/
 // U0LCR Line Control Register
 #define mDIVISOR_LATCH_ACCES_BIT                   0x00000080
@@ -26,6 +27,7 @@
 ////////////// Zmienne globalne ////////////
 char cOdebranyZnak;
 
+struct RecieverBuffer sRxBuffer;
 
 ///////////////////////////////////////////
 __irq void UART0_Interrupt (void) {
@@ -61,3 +63,27 @@ void UART_InitWithInt(unsigned int uiBaudRate){
    VICVectCntl0  = mIRQ_SLOT_ENABLE | VIC_UART0_CHANNEL_NR;     // use it for UART 0 Interrupt
    VICIntEnable |= (0x1 << VIC_UART0_CHANNEL_NR);               // Enable UART 0 Interrupt Channel
 }
+
+
+void Reciever_PutCharacterToBuffer(char cCharacter){
+	if(sRxBuffer.ucCharCtr>=RECIEVER_SIZE){
+		sRxBuffer.eStatus = OVERFLOW;
+	}else if(TERMINATOR == cCharacter){
+		sRxBuffer.cData[sRxBuffer.ucCharCtr] = NULL;
+		sRxBuffer.ucCharCtr = 0;
+		sRxBuffer.eStatus = READY;
+	}else{
+		sRxBuffer.cData[sRxBuffer.ucCharCtr] = cCharacter;
+		sRxBuffer.ucCharCtr++;
+	}
+}
+
+enum eRecieverStatus eReciever_GetStatus(void){
+	return sRxBuffer.eStatus;
+}
+
+void Reciever_GetStringCopy(char * ucDestination){
+	CopyString(sRxBuffer.cData,ucDestination);
+	sRxBuffer.eStatus = EMPTY;
+}
+
