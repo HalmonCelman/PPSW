@@ -112,6 +112,7 @@ char Transmiter_GetCharacterFromBuffer(){
 }
 
 void Transmiter_SendString(char cString[]){
+	while(sTransmiterBuffer.eStatus==BUSY);
 	CopyString(cString,sTransmiterBuffer.cData);
 	sTransmiterBuffer.cCharCtr=0;
 	sTransmiterBuffer.fLastCharacter=0;

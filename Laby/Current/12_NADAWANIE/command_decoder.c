@@ -4,8 +4,7 @@
 Token asToken[MAX_TOKEN_NR];
 
 Keyword asKeywordList[MAX_KEYWORD_NR]={
-{CAL,"callib"},
-{GO, "goto" },
+{CALC,"calc"}
 };
 
 unsigned char ucTokenNr;
