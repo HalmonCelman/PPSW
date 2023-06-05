@@ -13,9 +13,16 @@ int main (){
 	DetectorInit();
 	
 	UART_InitWithInt(9600);
+	
+	char cKomunikat[30];
+	unsigned char ucTimerCounter=0;
+	
 	while(1){
 	if(sTransmiterBuffer.eStatus == FREE){
-		Transmiter_SendString("test123");
+		CopyString("licznik ",cKomunikat);
+		AppendUIntToString(ucTimerCounter,cKomunikat);
+		Transmiter_SendString(cKomunikat);
+		ucTimerCounter++;
 	}
 	}
 	return 0;
