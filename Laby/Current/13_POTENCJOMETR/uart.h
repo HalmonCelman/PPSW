@@ -34,3 +34,4 @@ enum eRecieverStatus eReciever_GetStatus(void);
 void Reciever_GetStringCopy(char * ucDestination);
 
 void Transmiter_SendString(char cString[]);
+enum eTransmiterStatus Transmiter_GetStatus(void);

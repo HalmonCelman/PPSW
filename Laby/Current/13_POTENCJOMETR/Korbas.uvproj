@@ -472,6 +472,16 @@
               <FileType>5</FileType>
               <FilePath>.\string.h</FilePath>
             </File>
+            <File>
+              <FileName>potencjometr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\potencjometr.c</FilePath>
+            </File>
+            <File>
+              <FileName>potencjometr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\potencjometr.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
