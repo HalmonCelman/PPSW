@@ -6,6 +6,19 @@
 
 #define DETECTOR_bm (1<<10)
 
+typedef enum {ACTIVE, INACTIVE} DetectorState;
+
+enum ServoState {CALLIB, IDLE, IN_PROGRESS};
+
+struct Servo
+{
+enum ServoState eState;
+unsigned int uiCurrentPosition; 
+unsigned int uiDesiredPosition;
+}; 
+
+void DetectorInit(void);
+DetectorState eReadDetector(void);
 
 struct Servo sServo;
 

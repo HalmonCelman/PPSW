@@ -99,20 +99,16 @@ char Transmiter_GetCharacterFromBuffer(){
 		if(sTransmiterBuffer.fLastCharacter == 1){
 			sTransmiterBuffer.eStatus = FREE;
 			return NULL;
-		}else{
-			if(cCurrentChar == NULL){
+		}else if(cCurrentChar == NULL){
 				sTransmiterBuffer.fLastCharacter=1;
 				return TERMINATOR;
-			}else{
+		}else{
 				sTransmiterBuffer.cCharCtr++;
 				return cCurrentChar;
-			}
 		}
-	
 }
 
 void Transmiter_SendString(char cString[]){
-	while(sTransmiterBuffer.eStatus==BUSY);
 	CopyString(cString,sTransmiterBuffer.cData);
 	sTransmiterBuffer.cCharCtr=0;
 	sTransmiterBuffer.fLastCharacter=0;

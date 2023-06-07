@@ -6,9 +6,9 @@
 
 #define MAX_TOKEN_NR 3 //maksymalna dopuszczalna ilosc tokenów
 #define MAX_KEYWORD_STRING_LTH 10 // mksymalna dlugosc komendy
-#define MAX_KEYWORD_NR 1
+#define MAX_KEYWORD_NR 3
 
-typedef enum {CALC} KeywordCode;
+typedef enum {CAL,GO,CALC} KeywordCode;
 typedef enum {TOKEN,DELIMITER} State;
 typedef enum {KEYWORD, NUMBER, STRING} TokenType;
 
